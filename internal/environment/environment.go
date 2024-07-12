@@ -5,7 +5,7 @@ import (
 )
 
 type ApiConfig struct {
-	Port       int    `env:"PORT, default=8080"`
+	Port       int    `env:"PORT, default=5000"`
 	EnvName    string `env:"ENV_NAME, default=development"`
 	ApiVersion string `env:"VERSION, default=v1"`
 }

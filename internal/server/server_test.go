@@ -12,7 +12,7 @@ func TestNewServer(t *testing.T) {
 		// Arrange
 		config := &environment.Config{
 			ApiConfig: &environment.ApiConfig{
-				Port: 8080,
+				Port: 5000,
 			},
 			DbConfig: &environment.DatabaseConfig{
 				DbName:        "db",
@@ -26,6 +26,6 @@ func TestNewServer(t *testing.T) {
 
 		// Assert
 		assert.NotNil(t, server)
-		assert.Equal(t, ":8080", server.Addr)
+		assert.Equal(t, ":5000", server.Addr)
 	})
 }

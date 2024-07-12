@@ -38,7 +38,7 @@ func TestIsBaseEndpointSet(t *testing.T) {
 	t.Run("Should return true if base endpoint set", func(t *testing.T) {
 		// Arrange
 		c := &CloudConfig{
-			BaseEndpoint: "http://localhost:8080",
+			BaseEndpoint: "http://localhost:5000",
 		}
 
 		// Act

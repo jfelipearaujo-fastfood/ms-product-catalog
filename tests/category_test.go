@@ -240,10 +240,10 @@ func createApiContainer(ctx context.Context, network *testcontainers.DockerNetwo
 				KeepImage:  true,
 			},
 			ExposedPorts: []string{
-				"8080",
+				"5000",
 			},
 			Env: map[string]string{
-				"API_PORT":              "8080",
+				"API_PORT":              "5000",
 				"API_ENV_NAME":          "development",
 				"API_VERSION":           "v1",
 				"DB_NAME":               "product_db",
@@ -271,11 +271,11 @@ func createApiContainer(ctx context.Context, network *testcontainers.DockerNetwo
 		return nil, ctx, err
 	}
 
-	if len(ports["8080/tcp"]) == 0 {
-		return nil, ctx, fmt.Errorf("Port 8080/tcp not found")
+	if len(ports["5000/tcp"]) == 0 {
+		return nil, ctx, fmt.Errorf("Port 5000/tcp not found")
 	}
 
-	port := ports["8080/tcp"][0].HostPort
+	port := ports["5000/tcp"][0].HostPort
 
 	// Run health check
 	res, err := http.Get(fmt.Sprintf("http://localhost:%s/health", port))

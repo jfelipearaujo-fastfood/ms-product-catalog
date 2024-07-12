@@ -23,7 +23,7 @@ func cleanEnv() {
 func TestGetEnvironment(t *testing.T) {
 	t.Run("Should load environment variables", func(t *testing.T) {
 		// Arrange
-		t.Setenv("API_PORT", "8080")
+		t.Setenv("API_PORT", "5000")
 		t.Setenv("API_ENV_NAME", "development")
 		t.Setenv("API_VERSION", "v1")
 
@@ -33,7 +33,7 @@ func TestGetEnvironment(t *testing.T) {
 
 		expected := &environment.Config{
 			ApiConfig: &environment.ApiConfig{
-				Port:       8080,
+				Port:       5000,
 				EnvName:    "development",
 				ApiVersion: "v1",
 			},
@@ -58,7 +58,7 @@ func TestGetEnvironment(t *testing.T) {
 
 	t.Run("Should return error if a required variable is not set", func(t *testing.T) {
 		// Arrange
-		t.Setenv("API_PORT", "8080")
+		t.Setenv("API_PORT", "5000")
 		t.Setenv("API_ENV_NAME", "development")
 		t.Setenv("API_VERSION", "v1")
 
@@ -80,7 +80,7 @@ func TestGetEnvironmentFromFile(t *testing.T) {
 
 		expected := &environment.Config{
 			ApiConfig: &environment.ApiConfig{
-				Port:       8080,
+				Port:       5000,
 				EnvName:    "development",
 				ApiVersion: "v1",
 			},
