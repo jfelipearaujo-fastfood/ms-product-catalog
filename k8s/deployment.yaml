@@ -23,6 +23,7 @@ spec:
         fargate: "true"
         app: ms-product-catalog
     spec:
+      automountServiceAccountToken: false
       serviceAccountName: sa-products
       containers:
         - name: ms-product-catalog
