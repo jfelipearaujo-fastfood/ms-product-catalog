@@ -1,4 +1,4 @@
-@host=http://localhost:8080
+@host=http://localhost:5000
 
 ### Health Check
 GET {{host}}/health
@@ -30,10 +30,10 @@ POST {{host}}/api/v1/products
 Content-Type: application/json
 
 {
-    "title": "product",
-    "description": "product description",
+    "title": "Refrigerante",
+    "description": "Refrigerante de lata",
     "price": 100,
-    "category_title": "category"
+    "category_title": "Bebidas"
 }
 
 ### Get Products (title, category, page, size)

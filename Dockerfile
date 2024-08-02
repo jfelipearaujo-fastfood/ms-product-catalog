@@ -23,7 +23,7 @@ ADD https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem /global-bu
 # Copy the binary to the production image from the builder stage
 COPY --from=builder /app/api /app/api
 
-EXPOSE 8080
+EXPOSE 5000
 
 # Run the api on container startup
 CMD ["/app/api"]

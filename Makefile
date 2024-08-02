@@ -162,11 +162,10 @@ lint: ## Go Linter
 
 ##@ Runner
 run: ## Run the application
-	make build
 	@if test ! -f .env; then \
 		make env; \
 	fi
-	@./build/main;
+	@go run cmd/api/main.go local;
 
 ##@ Testing
 test: ## Test the application
