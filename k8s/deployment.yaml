@@ -7,6 +7,7 @@ metadata:
     fargate: "true"
     app: ms-product-catalog
 spec:
+  automountServiceAccountToken: false
   replicas: 1
   selector:
     matchLabels:
