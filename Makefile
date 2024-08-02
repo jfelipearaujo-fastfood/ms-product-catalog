@@ -34,7 +34,7 @@ clean: ## Clean the binary
 	@echo "Cleaning..."
 	@rm -f build/main
 
-sec: ## Security checker
+sec: ## Security checker with gosec
 	@if command -v gosec > /dev/null; then \
 		echo "Analyzing..."; \
 		gosec ./...; \
@@ -46,6 +46,22 @@ sec: ## Security checker
 			gosec ./...; \
 		else \
 			echo "You chose not to intall gosec. Exiting..."; \
+			exit 1; \
+		fi; \
+	fi
+
+scan: ## Scan for code vulnerabilities with govulncheck
+	@if command -v govulncheck > /dev/null; then \
+		echo "Scanning..."; \
+		govulncheck -test -format text -show color ./...; \
+	else \
+		read -p "Go 'govulncheck' is not installed on your machine. Do you want to install it? [Y/n] " choice; \
+		if [ "$$choice" != "n" ] && [ "$$choice" != "N" ]; then \
+			go install golang.org/x/vuln/cmd/govulncheck@latest; \
+			echo "Scanning..."; \
+			govulncheck -test -format text -show color ./...; \
+		else \
+			echo "You chose not to intall govulncheck. Exiting..."; \
 			exit 1; \
 		fi; \
 	fi
@@ -188,6 +204,21 @@ load: ## Run the load test using k6
 	fi
 
 ##@ Developing
+install-go: ## Install a desired version of GoLang
+	@desiredVersion="go1.22.5"; \
+	currentVersion=$$(go version | grep -oE 'go[0-9]+\.[0-9]+\.[0-9]+'); \
+	if [ "$$currentVersion" != "$$desiredVersion" ]; then \
+		cat /etc/os-release; \
+		uname -r; \
+		wget --quiet https://go.dev/dl/$$desiredVersion.linux-amd64.tar.gz; \
+		sudo rm -rf /usr/local/go && tar -C /usr/local -xzf $$desiredVersion.linux-amd64.tar.gz; \
+		export PATH=$HOME/go/bin:/usr/local/go/bin:$PATH; \
+		rm -rf $$desiredVersion.linux-amd64.tar.gz; \
+		go version; \
+	else \
+		echo "GoLang version matchs the desired version: $$desiredVersion"; \
+	fi
+
 env: ## Create the .env file based on example
 	@echo "Generating..."
 	@cp .env.example .env
