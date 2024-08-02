@@ -7,7 +7,6 @@ metadata:
     fargate: "true"
     app: ms-product-catalog
 spec:
-  automountServiceAccountToken: false
   replicas: 1
   selector:
     matchLabels:
@@ -24,6 +23,7 @@ spec:
         fargate: "true"
         app: ms-product-catalog
     spec:
+      automountServiceAccountToken: false
       serviceAccountName: sa-products
       containers:
         - name: ms-product-catalog
