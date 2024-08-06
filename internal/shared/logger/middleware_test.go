@@ -25,7 +25,7 @@ func TestMiddleware(t *testing.T) {
 		// Arrange
 		middleware := Middleware()
 
-		trigger := func(c echo.Context) error {
+		trigger := func(_ echo.Context) error {
 			return echo.NewHTTPError(http.StatusBadRequest, errors.New("this is a test"))
 		}
 

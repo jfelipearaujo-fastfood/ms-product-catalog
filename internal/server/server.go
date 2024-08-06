@@ -19,6 +19,7 @@ import (
 	"github.com/jfelipearaujo-org/ms-product-catalog/internal/provider/time_provider"
 	category_repository "github.com/jfelipearaujo-org/ms-product-catalog/internal/repository/category"
 	product_repository "github.com/jfelipearaujo-org/ms-product-catalog/internal/repository/product"
+	token "github.com/jfelipearaujo-org/ms-product-catalog/internal/server/middlewares"
 	"github.com/jfelipearaujo-org/ms-product-catalog/internal/service/category/create_category"
 	"github.com/jfelipearaujo-org/ms-product-catalog/internal/service/category/delete_category"
 	"github.com/jfelipearaujo-org/ms-product-catalog/internal/service/category/get_categories"
@@ -61,6 +62,7 @@ func (server *Server) RegisterRoutes() http.Handler {
 
 	group := e.Group(fmt.Sprintf("/api/%s", server.Config.ApiConfig.ApiVersion))
 
+	group.Use(token.Middleware())
 	server.registerCategoryRoutes(group)
 	server.registerProductRoutes(group)
 
