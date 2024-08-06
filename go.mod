@@ -11,6 +11,7 @@ require (
 	github.com/awsdocs/aws-doc-sdk-examples/gov2/testtools v0.0.0-20240517173000-3632d040d1c9
 	github.com/cucumber/godog v0.14.0
 	github.com/go-playground/validator/v10 v10.19.0
+	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/google/uuid v1.6.0
 	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo/v4 v4.12.0
